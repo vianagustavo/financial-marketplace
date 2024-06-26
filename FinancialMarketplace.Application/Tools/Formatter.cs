@@ -1,7 +1,4 @@
 using System.Globalization;
-
-using FinancialMarketplace.Domain.Enums;
-
 namespace FinancialMarketplace.Application.Tools;
 
 public static class Formatter
@@ -24,15 +21,5 @@ public static class Formatter
         }
 
         return date.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
-    }
-
-    public static string GetMimeType(ExportFileExtension format)
-    {
-        return format switch
-        {
-            ExportFileExtension.Csv => "text/csv",
-            ExportFileExtension.Xlsx => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            _ => "application/octet-stream",
-        };
     }
 }
