@@ -44,7 +44,7 @@ public class EmailProvider : IEmailProvider
 
         await _smtpClient.SendMailAsync(message);
 
-        System.Console.WriteLine($"Email sent to {to}");
+        Console.WriteLine($"Email sent to {to}");
 
         message.Dispose();
     }

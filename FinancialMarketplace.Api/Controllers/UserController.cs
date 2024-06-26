@@ -16,7 +16,6 @@ public class UserController(IUserService userService, IMapper mapper) : ApiContr
     private readonly IMapper _mapper = mapper;
 
     [HttpPost]
-    [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<BasicUserDto>(StatusCodes.Status201Created)]
     [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]

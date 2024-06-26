@@ -66,7 +66,7 @@ public class UserService(
 
         var token = _tokenProvider.Encode(payload, _tokenSecondsExpiration);
 
-        await _emailProvider.Send(createUser.Email, "Sua conta BomConsórcio está pronta!", _emailTemplateBuilder.DefinePasswordTemplate(token, createUser.Name));
+        await _emailProvider.Send(createUser.Email, "Sua conta FinancialMarketplace!", _emailTemplateBuilder.DefinePasswordTemplate(token, createUser.Name));
 
         return user;
     }
@@ -142,7 +142,7 @@ public class UserService(
 
         var token = _tokenProvider.Encode(payload, _tokenSecondsExpiration);
 
-        await _emailProvider.Send(request.Email, "Link para alteração de senha BomConsórcio", _emailTemplateBuilder.ResetPasswordTemplate(token, user.Name));
+        await _emailProvider.Send(request.Email, "Link para alteração de senha", _emailTemplateBuilder.ResetPasswordTemplate(token, user.Name));
 
         return true;
     }

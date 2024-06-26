@@ -62,19 +62,19 @@ public class EmailTemplateBuilder(IConfiguration configuration) : IEmailTemplate
                   <body>
                     <div class=""body"">
                         <div style=""margin: auto; width: 650px; padding: 30px;"">
-                            <img src=""https://bomconsorcio-dev.s3.amazonaws.com/7338eeec-32f5-41f5-ac7d-289a80b11b52bc-logo.png?AWSAccessKeyId=AKIATGK2N52ZXJMMEHI7&Expires=2022528539&Signature=JjERWNyX2FEY0T3KnQwFY6C783I%3D"" alt=""brand"">
+                            <img src=""https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwrda-MrZ9QYuqNSlGsu4S8Xf8riz4qJDsjA&s"" alt=""brand"">
                             <div class=""card"">
                             <h6>Bem Vindo</h6>
-                            <p>Olá {username}, foi criada uma conta para você no sistema de gestão de carteira.</p>
-                            <p>Para começar a usar o sistema clique abaixo e crie uma senha.</p>
+                            <p>Olá {username}, sua conta no sistema de gestão de carteira está quase pronta.</p>
+                            <p>Para começar a usar a plataforma clique abaixo e crie uma senha.</p>
                             <p style=""text-align: center"">
                                 <a href=""{_url}/password?token={token}"" style=""padding: 10px; background-color: #7366ff; color: #fff; display: inline-block; border-radius: 4px"">Criar Senha</a>
                             </p>
                             <p style=""margin-bottom: 0"">
-                                Atenciosamente,<br>Equipe BomConsórcio
+                                Atenciosamente,<br>Equipe Financial Marketplace
                             </p>
                             </div>
-                            <p style=""text-align: center; color: #999; margin-top: 30px;"">Av Tancredo neves 1283 Sl 502 , Salvador - BA</p>
+                            <p style=""text-align: center; color: #999; margin-top: 30px;"">Av Tancredo neves 1283 Sl 502 , São Paulo - SP</p>
                         </div>
                     </div>
                   </body>
@@ -136,20 +136,19 @@ public class EmailTemplateBuilder(IConfiguration configuration) : IEmailTemplate
                   <body>
                     <div class=""body"">
                         <div style=""margin: auto; width: 650px; padding: 30px;"">
-                            <img src=""https://bomconsorcio-dev.s3.amazonaws.com/7338eeec-32f5-41f5-ac7d-289a80b11b52bc-logo.png?AWSAccessKeyId=AKIATGK2N52ZXJMMEHI7&Expires=2022528539&Signature=JjERWNyX2FEY0T3KnQwFY6C783I%3D"" alt=""brand"">
+                            <img src=""https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwrda-MrZ9QYuqNSlGsu4S8Xf8riz4qJDsjA&s"" alt=""brand"">
                             <div class=""card"">
-                            <h6>Bem Vindo</h6>
-                            <p>Olá {username}, </p>
-                            <p>Esqueceu a senha ?</p>
+                            <h6>Olá</h6>
+                            <p>{username}, esqueceu a senha?</p>
                             <p>Não tem problema, clique no botão abaixo e crie uma nova senha. </p>
                             <p style=""text-align: center"">
                                 <a href=""{_url}/reset-password?token={token}"" style=""padding: 10px; background-color: #7366ff; color: #fff; display: inline-block; border-radius: 4px"">Criar Nova Senha</a>
                             </p>
                             <p style=""margin-bottom: 0"">
-                                Atenciosamente,<br>Equipe BomConsórcio
+                                Atenciosamente,<br>Equipe Financial Marketplace
                             </p>
                             </div>
-                            <p style=""text-align: center; color: #999; margin-top: 30px;"">Av Tancredo neves 1283 Sl 502 , Salvador - BA</p>
+                            <p style=""text-align: center; color: #999; margin-top: 30px;"">Av Tancredo neves 1283 Sl 502 , São Paulo - SP</p>
                         </div>
                     </div>
                   </body>
