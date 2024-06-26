@@ -1,6 +1,6 @@
 namespace FinancialMarketplace.Domain.Enums;
 
-public enum Permissions
+public enum UserPermissions
 {
     ManageProducts,
     ManageUsers,

@@ -85,8 +85,8 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("is_used");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
+                    b.Property<string>("Type")
+                        .HasColumnType("text")
                         .HasColumnName("type");
 
                     b.Property<DateTime?>("UpdatedAt")
