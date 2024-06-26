@@ -481,7 +481,6 @@ $RECYCLE.BIN/
 # .Env files
 
 .env
-.env.*
 
 # Mono
 .mono
