@@ -1,7 +1,8 @@
 using System.Data;
 
 using Dapper;
-using BCWalletManager.Application.Contracts;
+
+using FinancialMarketplace.Application.Contracts;
 
 namespace FinancialMarketplace.Infrastructure.Database.DapperTypes.TypeHandlers;
 

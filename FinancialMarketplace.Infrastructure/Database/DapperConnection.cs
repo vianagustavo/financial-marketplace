@@ -1,4 +1,3 @@
-using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Infrastructure.Database.DapperTypes.TypeHandlers;
 
 using Dapper;
@@ -20,7 +19,7 @@ public class DapperConnection : IDisposable
         Config();
 
         string dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
-        string dbDatabase = Environment.GetEnvironmentVariable("DB_DATABASE") ?? "bc-wallet-manager";
+        string dbDatabase = Environment.GetEnvironmentVariable("DB_DATABASE") ?? "financial-marketplace";
         string dbPort = Environment.GetEnvironmentVariable("DB_PORT") ?? "26257";
         string dbUsername = Environment.GetEnvironmentVariable("DB_USERNAME") ?? "root";
         string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "";
@@ -55,8 +54,5 @@ public class DapperConnection : IDisposable
     {
         DefaultTypeMap.MatchNamesWithUnderscores = true;
         SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
-        SqlMapper.AddTypeHandler(new DapperSqlEnumTypeHandler<ReceivableStatus>());
-        SqlMapper.AddTypeHandler(new DapperSqlEnumTypeHandler<ReceivableType>());
-        SqlMapper.AddTypeHandler(new DapperSqlEnumTypeHandler<MoneyTransactionType>());
     }
 }

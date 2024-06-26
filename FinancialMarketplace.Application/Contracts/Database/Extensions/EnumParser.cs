@@ -1,4 +1,4 @@
-namespace BCWalletManager.Application.Contracts;
+namespace FinancialMarketplace.Application.Contracts;
 public static class EnumParser
 {
     public static T Parse<T>(string value) where T : Enum

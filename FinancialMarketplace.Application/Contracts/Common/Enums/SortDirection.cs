@@ -1,4 +1,4 @@
-namespace BCWalletManager.Application.Contracts.Common.Enums;
+namespace FinancialMarketplace.Application.Contracts.Common.Enums;
 
 public enum SortDirection
 {
