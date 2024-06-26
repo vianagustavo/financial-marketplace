@@ -1,4 +1,3 @@
-using FinancialMarketplace.Domain.Users;
 using FinancialMarketplace.Infrastructure.Database;
 
 using Microsoft.EntityFrameworkCore;
@@ -16,25 +15,5 @@ public static class MigrationExtensions
         dbContext.Database.MigrateAsync().GetAwaiter().GetResult();
 
         Console.WriteLine("[MIGRATION]: DATABASE MIGRATED.");
-
-        int userCount = dbContext.Users.CountAsync().GetAwaiter().GetResult();
-
-        if (userCount == 0)
-        {
-            Console.WriteLine("[MIGRATION]: SEEDING ADMIN USER...");
-
-            var user = new User()
-            {
-                Email = "admin@admin.com",
-                IsActive = true,
-                Name = "Admin",
-                Password = "$2a$11$JF.6jOgcanRZ5tNAZSSHAOnl9scG8au5Q/PT3d6wpt7U4DQwqWWGO",
-            };
-
-            dbContext.Users.Add(user);
-            dbContext.SaveChanges();
-            Console.WriteLine("[MIGRATION]: ADMIN USER SEEDED.");
-        }
-
     }
 }
