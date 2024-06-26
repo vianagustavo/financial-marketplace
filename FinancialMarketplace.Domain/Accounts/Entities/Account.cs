@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 using FinancialMarketplace.Domain.Common.Models;
 
 namespace FinancialMarketplace.Domain.Users;
@@ -12,6 +14,7 @@ public class Account : Entity
     public DateTime? DeletedAt { get; set; }
     public Guid UserId { get; set; }
     public User User { get; set; } = null!;
+    public Collection<Product> Accounts { get; } = [];
 
     public Account() : base(Guid.NewGuid())
     {
