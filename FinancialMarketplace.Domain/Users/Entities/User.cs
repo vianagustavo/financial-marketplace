@@ -15,6 +15,7 @@ public class User : Entity
     public DateTime? DeletedAt { get; set; }
     public required Guid RoleId { get; set; }
     public Role Role { get; set; } = null!;
+    public Account Account { get; set; } = null!;
     public Collection<UserToken> UserTokens { get; } = [];
 
     public User() : base(Guid.NewGuid())
@@ -30,7 +31,8 @@ public class User : Entity
         DateTime updatedAt,
         DateTime deletedAt,
         Guid roleId,
-        Role role
+        Role role,
+        Account account
     ) : base(id)
     {
         Name = name;
@@ -41,5 +43,6 @@ public class User : Entity
         DeletedAt = deletedAt;
         RoleId = roleId;
         Role = role;
+        Account = account;
     }
 }

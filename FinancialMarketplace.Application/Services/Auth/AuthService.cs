@@ -30,8 +30,10 @@ public class AuthService(
     {
         var user = await _userRepository.GetByEmail(request.Email);
 
-        if (user is null)
+        if (user is null || user.Password is null)
+        {
             return ApplicationErrors.AuthErrors.BadRequest;
+        }
 
         var passwordMatch = _cryptoHandler.Compare(request.Password, user.Password!);
 

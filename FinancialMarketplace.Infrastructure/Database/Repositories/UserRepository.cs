@@ -10,11 +10,13 @@ public class UserRepository(MyDbContext dbContext) : IUserRepository
 {
     private readonly MyDbContext _dbContext = dbContext;
 
-    public async Task<User> AddUserWithToken(User user, UserToken userToken)
+    public async Task<User> CreateUser(User user, UserToken userToken, Account account)
     {
         _dbContext.Users.Add(user);
 
         _dbContext.UserTokens.Add(userToken);
+
+        _dbContext.Accounts.Add(account);
 
         await _dbContext.SaveChangesAsync();
 
@@ -43,6 +45,7 @@ public class UserRepository(MyDbContext dbContext) : IUserRepository
     public async Task<User?> GetById(Guid id)
     {
         var user = await _dbContext.Users
+        .Include(user => user.Role)
         .FirstOrDefaultAsync(u => u.Id == id && u.DeletedAt == null);
 
         return user;

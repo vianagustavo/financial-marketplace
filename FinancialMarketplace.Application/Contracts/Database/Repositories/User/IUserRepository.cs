@@ -4,7 +4,7 @@ namespace FinancialMarketplace.Application.Database.Repositories;
 
 public interface IUserRepository
 {
-    Task<User> AddUserWithToken(User user, UserToken userToken);
+    Task<User> CreateUser(User user, UserToken userToken, Account account);
     Task<User[]> Get(GetUsersQueryOptions options);
     Task<User?> GetByEmail(string email);
     Task<User?> GetById(Guid id);

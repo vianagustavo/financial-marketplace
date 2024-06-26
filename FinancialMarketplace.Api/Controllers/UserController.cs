@@ -57,15 +57,15 @@ public class UserController(IUserService userService, IMapper mapper) : ApiContr
         return users.Match(u => Ok(_mapper.Map<BasicUserDto[]>(u)), Problem);
     }
 
-    [HttpPatch("{id:guid}")]
+    [HttpPatch("{id:guid}/role")]
     [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<BasicUserDto[]>(StatusCodes.Status200OK)]
     [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Patch(Guid id, UpdateUserRequestDto request)
+    public async Task<IActionResult> Patch(Guid id, UpdateUserRoleDto request)
     {
-        var user = await _userService.Update(id, request);
+        var user = await _userService.UpdateRole(id, request);
 
         return user.Match(u => Ok(_mapper.Map<bool>(u)), Problem);
     }

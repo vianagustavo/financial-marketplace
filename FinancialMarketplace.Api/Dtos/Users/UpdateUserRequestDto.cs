@@ -2,4 +2,4 @@ using FinancialMarketplace.Application.Contracts.Services;
 
 namespace FinancialMarketplace.Api.Dtos.Users;
 
-public record UpdateUserRequestDto : UpdateUserRequest;
+public record UpdateUserRoleDto : UpdateUserRoleRequest;

@@ -13,6 +13,6 @@ public interface IUserService
     Task<ErrorOr<User[]>> Get(GetUsersQueryOptions options);
     Task<ErrorOr<bool>> CreatePassword(CreatePasswordRequest request);
     Task<ErrorOr<bool>> ResetPassword(ResetPasswordRequest request);
-    Task<ErrorOr<bool>> Update(Guid id, UpdateUserRequest request);
+    Task<ErrorOr<bool>> UpdateRole(Guid id, UpdateUserRoleRequest request);
     Task<ErrorOr<bool>> Delete(Guid id);
 }

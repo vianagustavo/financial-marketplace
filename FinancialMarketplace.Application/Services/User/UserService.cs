@@ -11,11 +11,14 @@ using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Domain.Users;
 
 using ErrorOr;
+using FinancialMarketplace.Application.Services.Auth;
+using Bogus;
 
 namespace FinancialMarketplace.Application.Services;
 
 public class UserService(
     IConfiguration configuration,
+    IAuthenticatedUserService authenticatedUserService,
     IUserRepository userRepository,
     IUserTokenRepository userTokenRepository,
     IEmailProvider emailProvider,
@@ -26,12 +29,14 @@ public class UserService(
 {
     private readonly int _tokenSecondsExpiration = int.Parse(configuration["TOKEN_SECONDS_EXPIRATION"] ?? throw new ArgumentNullException("TOKEN_SECONDS_EXPIRATION"), NumberStyles.Integer, new CultureInfo("pt-BR"));
     private readonly string _clientRoleId = configuration["CLIENT_ROLE_ID"] ?? throw new ArgumentNullException("CLIENT_ROLE_ID");
+    private readonly IAuthenticatedUserService _loggedUser = authenticatedUserService;
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IUserTokenRepository _userTokenRepository = userTokenRepository;
     private readonly IEmailProvider _emailProvider = emailProvider;
     private readonly ITokenProvider _tokenProvider = tokenProvider;
     private readonly ICryptoHandler _cryptoHandler = cryptoHandler;
     private readonly IEmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+    private readonly Faker _faker = new();
 
     public async Task<ErrorOr<User>> Add(CreateUserRequest createUser)
     {
@@ -45,7 +50,6 @@ public class UserService(
             Name = createUser.Name,
             Email = createUser.Email,
             IsActive = true,
-            CreatedAt = DateTime.UtcNow,
             RoleId = Guid.Parse(_clientRoleId)
         };
 
@@ -58,7 +62,15 @@ public class UserService(
             CreatedAt = DateTime.UtcNow
         };
 
-        await _userRepository.AddUserWithToken(user, userToken);
+        Account account = new()
+        {
+            UserId = user.Id,
+            Balance = 0,
+            Number = _faker.Random.String2(2, "0123456789"),
+            Branch = _faker.Random.String2(8, "0123456789"),
+        };
+
+        await _userRepository.CreateUser(user, userToken, account);
 
         TokenPayload payload = new()
         {
@@ -149,8 +161,13 @@ public class UserService(
         return true;
     }
 
-    public async Task<ErrorOr<bool>> Update(Guid id, UpdateUserRequest request)
+    public async Task<ErrorOr<bool>> UpdateRole(Guid id, UpdateUserRoleRequest request)
     {
+        if (_loggedUser.User is null || !_loggedUser.User.Role.Permissions.Contains(UserPermissions.ManageUsers))
+        {
+            return ApplicationErrors.User.Permission;
+        }
+
         User? user = await _userRepository.GetById(id);
 
         if (user is null)
@@ -158,9 +175,7 @@ public class UserService(
             return ApplicationErrors.User.NotFound;
         }
 
-        user.Name = request.Name ?? user.Name;
-        user.Email = request.Email ?? user.Email;
-        user.IsActive = request.IsActive ?? user.IsActive;
+        user.RoleId = request.RoleId;
 
         await _userRepository.Update(user);
 

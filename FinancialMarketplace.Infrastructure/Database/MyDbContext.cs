@@ -15,6 +15,8 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
 
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<UserToken> UserTokens { get; set; } = null!;
+    public DbSet<Role> Role { get; set; } = null!;
+    public DbSet<Account> Accounts { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
