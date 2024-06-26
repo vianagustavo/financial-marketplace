@@ -14,6 +14,7 @@ public static class ApplicationDependencyInjection
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IProductService, ProductService>();
 
         services.AddMappings();
 
