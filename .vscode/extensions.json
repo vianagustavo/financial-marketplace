@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "csharpier.csharpier-vscode",
+        "ms-dotnettools.vscodeintellicode-csharp",
+        "editorconfig.editorconfig",
+        "mikestead.dotenv",
+        "streetsidesoftware.code-spell-checker",
+        "adrianwilczynski.namespace",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.vscode-dotnet-pack",
+        "gaoshan0621.csharp-format-usings"
+    ]
+}
