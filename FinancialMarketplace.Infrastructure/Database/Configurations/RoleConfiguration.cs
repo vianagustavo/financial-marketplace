@@ -1,3 +1,4 @@
+using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Domain.Users;
 
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
         builder.ToTable("roles");
 
         builder.Property(r => r.Permissions)
-            .HasConversion<string>();
+            .HasConversion(
+            p => string.Join(',', p),
+            p => p.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<UserPermissions>).ToArray()
+        );
     }
 }

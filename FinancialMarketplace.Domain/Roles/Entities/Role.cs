@@ -8,7 +8,7 @@ namespace FinancialMarketplace.Domain.Users;
 public class Role : Entity
 {
     public required string Name { get; set; } = null!;
-    public required UserPermissions Permissions { get; set; }
+    public required UserPermissions[] Permissions { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public Collection<User> Users { get; } = [];
@@ -21,7 +21,7 @@ public class Role : Entity
     public Role(
         Guid id,
         string name,
-        UserPermissions permissions,
+        UserPermissions[] permissions,
         DateTime updatedAt
     ) : base(id)
     {
