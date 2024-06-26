@@ -5,14 +5,16 @@ namespace FinancialMarketplace.Domain.Users;
 
 public class UserToken : Entity
 {
-    public UserToken() : base(Guid.NewGuid()) { }
-    public Guid UserId { get; set; }
-    public TokenType Type { get; set; }
-    public bool IsUsed { get; set; }
-    public DateTime ExpiresAt { get; set; }
+    public required Guid UserId { get; set; }
+    public required TokenType Type { get; set; }
+    public required bool IsUsed { get; set; }
+    public required DateTime ExpiresAt { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-
+    public UserToken() : base(Guid.NewGuid())
+    {
+        CreatedAt = DateTime.UtcNow;
+    }
     public UserToken(
         Guid id,
         Guid userId,

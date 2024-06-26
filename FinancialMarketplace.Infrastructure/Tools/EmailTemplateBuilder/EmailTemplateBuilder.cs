@@ -62,7 +62,9 @@ public class EmailTemplateBuilder(IConfiguration configuration) : IEmailTemplate
                   <body>
                     <div class=""body"">
                         <div style=""margin: auto; width: 650px; padding: 30px;"">
+                            <p style=""align: center"">
                             <img src=""https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwrda-MrZ9QYuqNSlGsu4S8Xf8riz4qJDsjA&s"" alt=""brand"">
+                            </p>
                             <div class=""card"">
                             <h6>Bem Vindo</h6>
                             <p>Olá {username}, sua conta no sistema de gestão de carteira está quase pronta.</p>

@@ -25,6 +25,7 @@ public class UserService(
     ) : IUserService
 {
     private readonly int _tokenSecondsExpiration = int.Parse(configuration["TOKEN_SECONDS_EXPIRATION"] ?? throw new ArgumentNullException("TOKEN_SECONDS_EXPIRATION"), NumberStyles.Integer, new CultureInfo("pt-BR"));
+    private readonly string _clientRoleId = configuration["CLIENT_ROLE_ID"] ?? throw new ArgumentNullException("CLIENT_ROLE_ID");
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IUserTokenRepository _userTokenRepository = userTokenRepository;
     private readonly IEmailProvider _emailProvider = emailProvider;
@@ -44,7 +45,8 @@ public class UserService(
             Name = createUser.Name,
             Email = createUser.Email,
             IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            RoleId = Guid.Parse(_clientRoleId)
         };
 
         UserToken userToken = new()
