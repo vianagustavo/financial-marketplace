@@ -3,7 +3,7 @@ using FinancialMarketplace.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BCWalletManager.Infrastructure.Database.Configurations;
+namespace FinancialMarketplace.Infrastructure.Database.Configurations;
 
 public class AccountConfigurations : IEntityTypeConfiguration<Account>
 {
