@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Transactions;
 
 namespace FinancialMarketplace.Infrastructure.Database;
 
@@ -18,6 +19,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<Role> Role { get; set; } = null!;
     public DbSet<Account> Accounts { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
+    public DbSet<Transaction> Transactions { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

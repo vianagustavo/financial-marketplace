@@ -3,15 +3,18 @@ using FinancialMarketplace.Infrastructure.Database;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace FinancialMarketplace.Infrastructure.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240627210302_CreateTransactionsTable")]
+    partial class CreateTransactionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,10 +60,6 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_at");
-
-                    b.Property<bool>("IsSellable")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_sellable");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid")
@@ -163,6 +162,10 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_at");
 
+                    b.Property<decimal>("InitialValue")
+                        .HasColumnType("numeric")
+                        .HasColumnName("initial_value");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
                         .HasColumnName("is_active");
@@ -171,18 +174,10 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("market_value");
 
-                    b.Property<decimal>("MinimumValue")
-                        .HasColumnType("numeric")
-                        .HasColumnName("minimum_value");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
-
-                    b.Property<decimal>("OfferLimitValue")
-                        .HasColumnType("numeric")
-                        .HasColumnName("offer_limit_value");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")

@@ -16,6 +16,9 @@ public class ProductConfigurations : IEntityTypeConfiguration<Product>
     {
         builder.ToTable("products");
 
+        builder.Property(x => x.Id)
+            .ValueGeneratedNever();
+
         builder.Property(p => p.Category)
             .HasConversion<string>();
     }

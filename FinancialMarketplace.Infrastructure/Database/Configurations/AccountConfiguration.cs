@@ -15,5 +15,8 @@ public class AccountConfigurations : IEntityTypeConfiguration<Account>
     private static void ConfigureAccountTable(EntityTypeBuilder<Account> builder)
     {
         builder.ToTable("accounts");
+
+        builder.Property(x => x.Id)
+            .ValueGeneratedNever();
     }
 }

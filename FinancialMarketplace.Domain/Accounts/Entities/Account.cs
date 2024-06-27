@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 
 using FinancialMarketplace.Domain.Common.Models;
+using FinancialMarketplace.Domain.Transactions;
 
 namespace FinancialMarketplace.Domain.Users;
 
@@ -15,6 +16,7 @@ public class Account : Entity
     public Guid UserId { get; set; }
     public User User { get; set; } = null!;
     public Collection<Product> Products { get; } = [];
+    public Collection<Transaction> Transactions { get; } = [];
 
     public Account() : base(Guid.NewGuid())
     {

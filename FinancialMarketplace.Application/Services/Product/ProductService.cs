@@ -34,8 +34,9 @@ public class ProductService(
         Product product = new()
         {
             Name = createProductRequest.Name,
-            InitialValue = createProductRequest.InitialValue,
+            MinimumValue = createProductRequest.MinimumValue,
             MarketValue = createProductRequest.MarketValue,
+            OfferLimitValue = createProductRequest.OfferLimitValue,
             Category = createProductRequest.Category,
             IsActive = createProductRequest.IsActive,
             CreatedBy = _loggedUser.User.Email,

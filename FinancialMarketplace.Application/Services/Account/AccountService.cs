@@ -7,6 +7,7 @@ using FinancialMarketplace.Application.Contracts.Database;
 using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Transactions;
 
 namespace FinancialMarketplace.Application.Services;
 
@@ -43,6 +44,13 @@ public class AccountService(
             return ApplicationErrors.User.Permission;
         }
 
+        Product? acquiredProduct = _loggedUser.User.Account.Products.FirstOrDefault(p => p.Id == productId);
+
+        if (acquiredProduct is not null)
+        {
+            return ApplicationErrors.Product.AcquiredProduct;
+        }
+
         Product? product = await _productRepository.FindById(productId);
 
         if (product is null)
@@ -55,11 +63,19 @@ public class AccountService(
             return ApplicationErrors.Account.InsufficientFunds;
         }
 
+        Transaction transaction = new()
+        {
+            Value = product.MarketValue,
+            Type = TransactionType.Buy,
+            AccountId = _loggedUser.User.Account.Id,
+            ProductId = product.Id,
+        };
+
         _loggedUser.User.Account.Products.Add(product);
 
-        decimal updatedValue = _loggedUser.User.Account.Balance -= product.MarketValue;
+        _loggedUser.User.Account.Transactions.Add(transaction);
 
-        _loggedUser.User.Account.Balance = updatedValue;
+        _loggedUser.User.Account.Balance -= product.MarketValue;
 
         await _unitOfWork.SaveChangesAsync();
 
@@ -80,7 +96,17 @@ public class AccountService(
             return ApplicationErrors.Product.NotFound;
         }
 
+        Transaction transaction = new()
+        {
+            Value = product.MarketValue,
+            Type = TransactionType.Sell,
+            AccountId = _loggedUser.User.Account.Id,
+            ProductId = product.Id,
+        };
+
         _loggedUser.User.Account.Products.Remove(product);
+
+        _loggedUser.User.Account.Transactions.Add(transaction);
 
         decimal updatedValue = _loggedUser.User.Account.Balance += product.MarketValue;
 

@@ -13,6 +13,10 @@ public static partial class ApplicationErrors
         public static Error NotFound => Error.NotFound(
         code: "Product.NotFound",
         description: "Produto não encontrado ou indisponível");
+
+        public static Error AcquiredProduct => Error.Validation(
+        code: "Product.AcquiredProduct",
+        description: "Produto já está presente em carteira");
     }
 
 }

@@ -17,6 +17,9 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
     {
         builder.ToTable("roles");
 
+        builder.Property(x => x.Id)
+            .ValueGeneratedNever();
+
         builder.Property(r => r.Permissions)
             .HasConversion(
             p => string.Join(',', p),
