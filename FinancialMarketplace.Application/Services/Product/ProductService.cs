@@ -6,6 +6,8 @@ using FinancialMarketplace.Domain.Users;
 
 using ErrorOr;
 using FinancialMarketplace.Application.Services.Auth;
+using FinancialMarketplace.Application.Contracts.Services.Common;
+using System.Collections.ObjectModel;
 
 namespace FinancialMarketplace.Application.Services;
 
@@ -42,5 +44,25 @@ public class ProductService(
         await _productRepository.Add(product);
 
         return product;
+    }
+
+    public async Task<ErrorOr<PaginatedResponse<Product>>> GetMany(int page, int pageSize, ProductQueryOptions options)
+    {
+        Product[] products = await _productRepository.GetMany(page, pageSize, options);
+
+        var totalCount = await _productRepository.GetCount(options);
+        var pageCount = (totalCount + pageSize - 1) / pageSize;
+
+        return new PaginatedResponse<Product>
+        {
+            Items = new Collection<Product>(products),
+            Pagination = new Pagination
+            {
+                CurrentPage = page,
+                PageCount = pageCount,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            }
+        };
     }
 }

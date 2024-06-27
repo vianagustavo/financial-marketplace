@@ -1,6 +1,6 @@
 using FinancialMarketplace.Domain.Enums;
 
-namespace FinancialMarketplace.Api.Dtos.Users;
+namespace FinancialMarketplace.Api.Dtos.Product;
 
 public record BasicProductDto
 {
@@ -10,5 +10,6 @@ public record BasicProductDto
     public decimal MarketValue { get; set; }
     public ProductCategory Category { get; set; }
     public bool IsActive { get; set; }
+    public string CreatedBy { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
 }
