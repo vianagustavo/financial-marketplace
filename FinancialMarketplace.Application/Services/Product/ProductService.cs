@@ -26,7 +26,7 @@ public class ProductService(
             return ApplicationErrors.User.Permission;
         }
 
-        Product? existingProduct = await _productRepository.GetByName(createProductRequest.Name);
+        Product? existingProduct = await _productRepository.FindByName(createProductRequest.Name);
 
         if (existingProduct is not null)
             return ApplicationErrors.Product.BadRequest;

@@ -47,6 +47,7 @@ public class UserRepository(MyDbContext dbContext) : IUserRepository
         var user = await _dbContext.Users
         .Include(user => user.Role)
         .Include(user => user.Account)
+        .Include(user => user.Account.Products)
         .FirstOrDefaultAsync(u => u.Id == id && u.DeletedAt == null);
 
         return user;

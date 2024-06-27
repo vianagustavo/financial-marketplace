@@ -19,10 +19,18 @@ public class ProductRepository(MyDbContext dbContext) : IProductRepository
         return product;
     }
 
-    public async Task<Product?> GetByName(string name)
+    public async Task<Product?> FindByName(string name)
     {
         Product? product = await _dbContext.Products
             .FirstOrDefaultAsync(p => p.Name == name && p.IsActive == true);
+
+        return product;
+    }
+
+    public async Task<Product?> FindById(Guid id)
+    {
+        Product? product = await _dbContext.Products
+            .FirstOrDefaultAsync(p => p.Id == id && p.IsActive == true);
 
         return product;
     }
@@ -38,7 +46,8 @@ public class ProductRepository(MyDbContext dbContext) : IProductRepository
 
     public async Task<int> GetCount(ProductQueryOptions options)
     {
-        return await AppliesFilters(options).CountAsync();
+        return await AppliesFilters(options)
+        .CountAsync();
     }
 
     private IQueryable<Product> AppliesFilters(ProductQueryOptions options)
@@ -52,6 +61,7 @@ public class ProductRepository(MyDbContext dbContext) : IProductRepository
             p => p.MarketValue >= options.MarketValueLowerBound)
             .WhereIf(
             options.MarketValueUpperBound.HasValue,
-            p => p.MarketValue <= options.MarketValueUpperBound);
+            p => p.MarketValue <= options.MarketValueUpperBound)
+            .Where(p => p.IsActive == true);
     }
 }

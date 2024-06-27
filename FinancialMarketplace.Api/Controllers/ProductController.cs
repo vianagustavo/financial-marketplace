@@ -8,6 +8,7 @@ using FinancialMarketplace.Application.Services;
 
 using MapsterMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinancialMarketplace.Api.Controllers;
@@ -19,6 +20,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
     private readonly IMapper _mapper = mapper;
 
     [HttpPost()]
+    [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<BasicProductDto>(StatusCodes.Status201Created)]
     [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
@@ -34,6 +36,7 @@ public class ProductController(IProductService productService, IMapper mapper) :
     }
 
     [HttpGet()]
+    [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<GetManyProductsResponseDto>(StatusCodes.Status201Created)]
     [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
