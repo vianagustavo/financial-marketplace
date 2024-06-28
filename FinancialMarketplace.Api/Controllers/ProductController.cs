@@ -55,4 +55,20 @@ public class ProductController(IProductService productService, IMapper mapper) :
             Problem
         );
     }
+
+    [HttpPatch("{id:guid}")]
+    [Authorize(Roles = "user")]
+    [Produces("application/json")]
+    [ProducesResponseType<bool>(StatusCodes.Status201Created)]
+    [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Update(Guid id, UpdateProductRequestDto updateProductRequest)
+    {
+        var updatedProduct = await _productService.Update(id, updateProductRequest);
+
+        return updatedProduct.Match(
+            result => Ok(_mapper.Map<bool>(result)),
+            Problem
+        );
+    }
 }

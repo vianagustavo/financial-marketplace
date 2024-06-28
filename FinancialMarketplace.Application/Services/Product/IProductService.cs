@@ -11,4 +11,5 @@ public interface IProductService
 {
     public Task<ErrorOr<Product>> Add(CreateProductRequest createProductRequest);
     public Task<ErrorOr<PaginatedResponse<Product>>> GetMany(int page, int pageSize, ProductQueryOptions options);
+    public Task<ErrorOr<bool>> Update(Guid productId, UpdateProductRequest updateProductRequest);
 }
