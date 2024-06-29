@@ -53,3 +53,5 @@ Todos os endpoints desenvolvidos na API foram documentados utilizando Swagger e 
 
 - Localmente: `http://localhost:5153/swagger/index.html`
 - Dev Test: ``
+
+
