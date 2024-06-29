@@ -8,6 +8,7 @@
 2. Inicializando
 3. Gerando e Implementando Migrations (Entity Framework)
 4. Documentação da API
+5. Autor
 
 ## Tecnologias Utilizadas
 
@@ -45,10 +46,33 @@ $ dotnet ef database update -p FinancialMarketplace.Infrastructure/ -s Financial
 
 ```
 
-**Para medida de uso da aplicação, foram criados Roles e um Usuário Admin através de migrations**
+**Para medida de testes da aplicação, foram criados Roles padronizadas e um Usuário Admin através de migrations**
 
 ## Documentação da API
 
 Todos os endpoints desenvolvidos na API foram documentados utilizando Swagger e podem ser acessados:
 
 - Localmente: `http://localhost:5153/swagger/index.html`
+
+|  Verbo   |                    Endpoint                     |                 Descrição                  |     Acessível à:      |
+| :------- | :---------------------------------------------: | :----------------------------------------: | :-------------------: |
+| `POST`   |                  `/users`              |              Criação de novo usuário                |          -            |
+| `GET`    |                  `/users`              |              Listagem de usuários                   |       Usuários        |
+| `GET`    |                 `/users/{id}`          |                 Busca de usuário                    |       Usuários        |
+| `DELETE` |                  `/users`              |                Deleta um usuário                    |       Usuários        |
+| `PATCH`  |              `/users/{id}/role`        |              Altera role de usuário                 |    Operacional/Admin  |
+| `PATCH`  |              `/users/password`         |               Criação de senha de usuário           |          -            |
+| `POST`   |            `/users/reset-password`     |                Reseta senha de usuário              |          -            |
+| `POST`   |                `/auth/login`           |                  Login de usuários                  |          -            |
+| `POST`   |                `/auth/refresh`         |                  Reseta token de login              |          -            |
+| `PATCH`  |             `/accounts/funds`          |               Adiciona saldo à conta                |   Operacional/Cliente |
+| `PATCH`  |   `/accounts/product/{productId}/buy`  |            Realiza compra de um produto             |        Cliente        |
+| `PATCH`  |   `/accounts/product/{productId}/sell` |            Realiza venda de um produto              |        Cliente        |
+| `GET`    |           `/accounts/transactions`     |            Lista todas transações da conta          |        Cliente        |
+| `POST`   |                 `/products`            |               Criação de um novo produto            |    Operacional/Admin  |
+| `GET`    |                 `/products`            |                 Listagem de produtos                |       Usuários        |
+| `PATCH`  |               `/products/{id}`         |                Alteração de um produto              |    Operacional/Admin  |
+
+## Autor
+
+- **Gustavo Ferreira Viana**

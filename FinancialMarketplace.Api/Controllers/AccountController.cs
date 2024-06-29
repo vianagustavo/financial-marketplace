@@ -18,7 +18,7 @@ public class AccountController(IAccountService accountService, IMapper mapper) :
     private readonly IAccountService _accountService = accountService;
     private readonly IMapper _mapper = mapper;
 
-    [HttpPost("funds")]
+    [HttpPatch("funds")]
     [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<bool>(StatusCodes.Status200OK)]
@@ -66,7 +66,7 @@ public class AccountController(IAccountService accountService, IMapper mapper) :
         );
     }
 
-    [HttpGet("/transactions")]
+    [HttpGet("transactions")]
     [Authorize(Roles = "user")]
     [Produces("application/json")]
     [ProducesResponseType<GetManyTransactionsResponseDto>(StatusCodes.Status201Created)]
