@@ -34,6 +34,7 @@ public static class InfrastructureDependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserTokenRepository, UserTokenRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ITransactionRepository, TransactionRepository>();
 
         return services;
     }

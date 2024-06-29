@@ -8,18 +8,22 @@ using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Domain.Users;
 using FinancialMarketplace.Domain.Transactions;
+using FinancialMarketplace.Application.Contracts.Services.Common;
+using System.Collections.ObjectModel;
 
 namespace FinancialMarketplace.Application.Services;
 
 public class AccountService(
     IUnitOfWork unitOfWork,
     IAuthenticatedUserService authenticatedUserService,
-    IProductRepository productRepository
+    IProductRepository productRepository,
+    ITransactionRepository transactionRepository
 ) : IAccountService
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IAuthenticatedUserService _loggedUser = authenticatedUserService;
     private readonly IProductRepository _productRepository = productRepository;
+    private readonly ITransactionRepository _transactionRepository = transactionRepository;
 
     public async Task<ErrorOr<bool>> AddFunds(AddFundsRequest addFundsRequest)
     {
@@ -115,5 +119,30 @@ public class AccountService(
         await _unitOfWork.SaveChangesAsync();
 
         return true;
+    }
+
+    public async Task<ErrorOr<PaginatedResponse<Transaction>>> GetMany(int page, int pageSize, TransactionQueryOptions options)
+    {
+        if (_loggedUser.User is null || !_loggedUser.User.Role.Permissions.Contains(UserPermissions.NegotiateProducts))
+        {
+            return ApplicationErrors.User.Permission;
+        }
+
+        Transaction[] transactions = await _transactionRepository.GetMany(_loggedUser.User.Account.Id, page, pageSize, options);
+
+        var totalCount = await _transactionRepository.GetCount(options);
+        var pageCount = (totalCount + pageSize - 1) / pageSize;
+
+        return new PaginatedResponse<Transaction>
+        {
+            Items = new Collection<Transaction>(transactions),
+            Pagination = new Pagination
+            {
+                CurrentPage = page,
+                PageCount = pageCount,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            }
+        };
     }
 }

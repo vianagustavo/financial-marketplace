@@ -1,4 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 using FinancialMarketplace.Api.Dtos.Account;
+using FinancialMarketplace.Api.Dtos.Product;
+using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Application.Services;
 
 using MapsterMapper;
@@ -58,6 +62,27 @@ public class AccountController(IAccountService accountService, IMapper mapper) :
 
         return response.Match(
             result => Ok(_mapper.Map<bool>(result)),
+            Problem
+        );
+    }
+
+    [HttpGet("/transactions")]
+    [Authorize(Roles = "user")]
+    [Produces("application/json")]
+    [ProducesResponseType<GetManyTransactionsResponseDto>(StatusCodes.Status201Created)]
+    [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetMany(
+    [Required] int page,
+    [FromQuery(Name = "page_size")] int? pageSize,
+    GetTransactionQueryOptionsDto optionsDto)
+    {
+        var options = _mapper.Map<TransactionQueryOptions>(optionsDto);
+
+        var products = await _accountService.GetMany(page, pageSize ?? 50, options);
+
+        return products.Match(
+            result => Ok(_mapper.Map<GetManyTransactionsResponseDto>(result)),
             Problem
         );
     }
