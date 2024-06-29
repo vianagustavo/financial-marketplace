@@ -4,6 +4,7 @@ using FinancialMarketplace.Application.Services.Auth;
 using FinancialMarketplace.Application.Services.Workers;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace FinancialMarketplace.Application;
 
@@ -19,6 +20,8 @@ public static class ApplicationDependencyInjection
         services.AddScoped<INotifyExpiringProducts, NotifyExpiringProductsWorker>();
 
         services.AddMappings();
+
+        services.AddSingleton<IHostedService, WorkersConfigurationBuilder>();
 
         return services;
     }

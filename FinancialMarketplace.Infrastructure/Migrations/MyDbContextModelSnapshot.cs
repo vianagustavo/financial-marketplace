@@ -39,54 +39,7 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                     b.ToTable("account_product", (string)null);
                 });
 
-            modelBuilder.Entity("FinancialMarketplace.Domain.Transactions.Transaction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("account_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("product_id");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("type");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("numeric")
-                        .HasColumnName("value");
-
-                    b.HasKey("Id")
-                        .HasName("pk_transactions");
-
-                    b.HasIndex("AccountId")
-                        .HasDatabaseName("ix_transactions_account_id");
-
-                    b.HasIndex("ProductId")
-                        .HasDatabaseName("ix_transactions_product_id");
-
-                    b.ToTable("transactions", (string)null);
-                });
-
-            modelBuilder.Entity("FinancialMarketplace.Domain.Users.Account", b =>
+            modelBuilder.Entity("FinancialMarketplace.Domain.Accounts.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -132,7 +85,7 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                     b.ToTable("accounts", (string)null);
                 });
 
-            modelBuilder.Entity("FinancialMarketplace.Domain.Users.Product", b =>
+            modelBuilder.Entity("FinancialMarketplace.Domain.Products.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -189,6 +142,53 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasName("pk_products");
 
                     b.ToTable("products", (string)null);
+                });
+
+            modelBuilder.Entity("FinancialMarketplace.Domain.Transactions.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("account_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("product_id");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("numeric")
+                        .HasColumnName("value");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transactions");
+
+                    b.HasIndex("AccountId")
+                        .HasDatabaseName("ix_transactions_account_id");
+
+                    b.HasIndex("ProductId")
+                        .HasDatabaseName("ix_transactions_product_id");
+
+                    b.ToTable("transactions", (string)null);
                 });
 
             modelBuilder.Entity("FinancialMarketplace.Domain.Users.Role", b =>
@@ -314,14 +314,14 @@ namespace FinancialMarketplace.Infrastructure.Migrations
 
             modelBuilder.Entity("AccountProduct", b =>
                 {
-                    b.HasOne("FinancialMarketplace.Domain.Users.Account", null)
+                    b.HasOne("FinancialMarketplace.Domain.Accounts.Account", null)
                         .WithMany()
                         .HasForeignKey("AccountsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_account_product_accounts_accounts_id");
 
-                    b.HasOne("FinancialMarketplace.Domain.Users.Product", null)
+                    b.HasOne("FinancialMarketplace.Domain.Products.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -329,16 +329,28 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasConstraintName("fk_account_product_products_products_id");
                 });
 
+            modelBuilder.Entity("FinancialMarketplace.Domain.Accounts.Account", b =>
+                {
+                    b.HasOne("FinancialMarketplace.Domain.Users.User", "User")
+                        .WithOne("Account")
+                        .HasForeignKey("FinancialMarketplace.Domain.Accounts.Account", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_accounts_users_user_id");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FinancialMarketplace.Domain.Transactions.Transaction", b =>
                 {
-                    b.HasOne("FinancialMarketplace.Domain.Users.Account", "Account")
+                    b.HasOne("FinancialMarketplace.Domain.Accounts.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_transactions_accounts_account_id");
 
-                    b.HasOne("FinancialMarketplace.Domain.Users.Product", "Product")
+                    b.HasOne("FinancialMarketplace.Domain.Products.Product", "Product")
                         .WithMany("Transactions")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,18 +360,6 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("FinancialMarketplace.Domain.Users.Account", b =>
-                {
-                    b.HasOne("FinancialMarketplace.Domain.Users.User", "User")
-                        .WithOne("Account")
-                        .HasForeignKey("FinancialMarketplace.Domain.Users.Account", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_accounts_users_user_id");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FinancialMarketplace.Domain.Users.User", b =>
@@ -384,12 +384,12 @@ namespace FinancialMarketplace.Infrastructure.Migrations
                         .HasConstraintName("fk_user_tokens_users_user_id");
                 });
 
-            modelBuilder.Entity("FinancialMarketplace.Domain.Users.Account", b =>
+            modelBuilder.Entity("FinancialMarketplace.Domain.Accounts.Account", b =>
                 {
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("FinancialMarketplace.Domain.Users.Product", b =>
+            modelBuilder.Entity("FinancialMarketplace.Domain.Products.Product", b =>
                 {
                     b.Navigation("Transactions");
                 });

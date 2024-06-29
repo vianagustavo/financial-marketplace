@@ -1,41 +1,34 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace FinancialMarketplace.Application.Services.Workers;
 
-public class WorkersConfigurationBuilder(
-    ILogger<WorkersConfigurationBuilder> logger,
-    INotifyExpiringProducts notifyExpiringProducts) : IHostedService, IDisposable
+public class WorkersConfigurationBuilder(IServiceProvider serviceProvider) : IHostedService, IDisposable
 {
-    private readonly ILogger<WorkersConfigurationBuilder> _logger = logger;
-    private readonly INotifyExpiringProducts _notifyExpiringProducts = notifyExpiringProducts;
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
     private Timer? _timer;
     private bool _disposed;
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Workers are configured and are starting.");
-
         TimeSpan timeUntilMidnight = DateTime.Today.AddDays(1) - DateTime.Now;
         _timer = new Timer(DoWork, null, timeUntilMidnight, TimeSpan.FromDays(1));
 
         return Task.CompletedTask;
     }
 
-    private void DoWork(object? state)
+    private async void DoWork(object? state)
     {
-        _notifyExpiringProducts.NotifyExpiringProducts().Wait();
+        using var scope = _serviceProvider.CreateScope();
+        var notifyExpiringProducts = scope.ServiceProvider.GetRequiredService<INotifyExpiringProducts>();
+        await notifyExpiringProducts.NotifyExpiringProducts();
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Workers Service is stopping.");
-
         _timer?.Change(Timeout.Infinite, 0);
-
         return Task.CompletedTask;
     }
-
     protected virtual void Dispose(bool disposing)
     {
         if (!_disposed)
