@@ -44,6 +44,7 @@ public class ProductService(
             OfferLimitValue = createProductRequest.OfferLimitValue,
             Category = createProductRequest.Category,
             IsActive = createProductRequest.IsActive,
+            DueAt = createProductRequest.DueAt,
             CreatedBy = _loggedUser.User.Email,
         };
 

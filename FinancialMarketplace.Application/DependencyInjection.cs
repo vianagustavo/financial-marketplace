@@ -1,6 +1,7 @@
 ﻿using FinancialMarketplace.Application.Mapping;
 using FinancialMarketplace.Application.Services;
 using FinancialMarketplace.Application.Services.Auth;
+using FinancialMarketplace.Application.Services.Workers;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,7 @@ public static class ApplicationDependencyInjection
         services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<INotifyExpiringProducts, NotifyExpiringProductsWorker>();
 
         services.AddMappings();
 

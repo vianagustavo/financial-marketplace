@@ -1,4 +1,5 @@
 using FinancialMarketplace.Application;
+using FinancialMarketplace.Application.Contracts.Database.Repositories;
 using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Domain.Users;
 
@@ -63,5 +64,22 @@ public class ProductRepository(MyDbContext dbContext) : IProductRepository
             options.MarketValueUpperBound.HasValue,
             p => p.MarketValue <= options.MarketValueUpperBound)
             .Where(p => p.IsActive == true);
+    }
+    public async Task<IList<GroupedExpiringProducts>> GetExpiringProducts()
+    {
+        DateTime today = DateTime.UtcNow.Date;
+        DateTime nextWeek = today.AddDays(7);
+
+        var groupedProducts = await _dbContext.Products
+            .Where(p => p.DueAt >= today && p.DueAt <= nextWeek)
+            .GroupBy(p => p.CreatedBy)
+            .Select(g => new GroupedExpiringProducts
+            {
+                CreatedBy = g.Key,
+                Products = g.ToArray()
+            })
+            .ToListAsync();
+
+        return groupedProducts;
     }
 }

@@ -15,6 +15,7 @@ public class Product : Entity
     public required ProductCategory Category { get; set; }
     public required bool IsActive { get; set; }
     public required string CreatedBy { get; set; } = null!;
+    public DateTime DueAt { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public DateTime? DeletedAt { get; set; }
@@ -33,6 +34,7 @@ public class Product : Entity
         decimal offerLimitValue,
         ProductCategory category,
         bool isActive,
+        DateTime dueAt,
         DateTime updatedAt,
         DateTime deletedAt
     ) : base(id)
@@ -43,6 +45,7 @@ public class Product : Entity
         OfferLimitValue = offerLimitValue;
         Category = category;
         IsActive = isActive;
+        DueAt = dueAt;
         UpdatedAt = updatedAt;
         DeletedAt = deletedAt;
     }

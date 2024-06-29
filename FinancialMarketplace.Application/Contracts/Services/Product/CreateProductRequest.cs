@@ -8,6 +8,7 @@ public record CreateProductRequest
     public decimal MinimumValue { get; set; }
     public decimal MarketValue { get; set; }
     public decimal OfferLimitValue { get; set; }
+    public DateTime DueAt { get; set; }
     public ProductCategory Category { get; set; }
     public bool IsActive { get; set; }
 }

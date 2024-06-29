@@ -10,6 +10,7 @@ using DotNetEnv;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using FinancialMarketplace.Application.Services.Workers;
 
 Env.TraversePath().Load();
 
@@ -22,6 +23,8 @@ builder.Services
     .AddPresentation()
     .AddApplication()
     .AddInfrastructure();
+
+builder.Services.AddHostedService<WorkersConfigurationBuilder>();
 
 var jwtSecretKey = Encoding.UTF8.GetBytes(Env.GetString("API_AUTH_KEY") ?? throw new MissingEnvironmentVariableException("API_AUTH_KEY"));
 
