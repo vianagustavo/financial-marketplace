@@ -14,5 +14,10 @@
             "src": "/(.*)",
             "dest": "out/$1"
         }
-    ]
+    ],
+    "functions": {
+        "api/index.js": {
+            "runtime": "vercel-dotnet-8.0"
+        }
+    }
 }
