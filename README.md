@@ -7,7 +7,7 @@
 1. Tecnologias Utilizadas
 2. Inicializando
 3. Gerando e Implementando Migrations (Entity Framework)
-4. Testes Automatizados
+4. Documentação da API
 
 ## Tecnologias Utilizadas
 
@@ -15,13 +15,12 @@
 - [.NET](https://dotnet.microsoft.com/pt-br/)
 - [Entity Framework](https://learn.microsoft.com/pt-br/ef/)
 - [CockroachDB](https://www.cockroachlabs.com/)
-- [Xunit](https://xunit.net/)
-- [Test Containers](https://testcontainers.com/)
+- [Swagger](https://swagger.io/)
 
 ## Inicializando
 
 - Clonar o repositório
-- Buildando a aplicação: `dotnet build`
+- Buildando a aplicação: `dotnet restore && dotnet build`
 - Criando um arquivo `.env` a partir da cópia do arquivo `.env.example`: `cp .env.example .env`
 - Subindo o banco localmente usando _Docker Compose_: `docker-compose up`
 - Executando a aplicação localmente: `dotnet run --project ./FinancialMarketplace.Api`
@@ -46,11 +45,11 @@ $ dotnet ef database update -p FinancialMarketplace.Infrastructure/ -s Financial
 
 ```
 
-## Testes Automatizados
+**Para medida de uso da aplicação, foram criados Roles e um Usuário Admin através de migrations**
 
-Para rodar os testes disponíves da aplicação:
+## Documentação da API
 
-```
-$ dotnet test --project ./FinancialMarketplace.Test
+Todos os endpoints desenvolvidos na API foram documentados utilizando Swagger e podem ser acessados:
 
-```
+- Localmente: `http://localhost:5153/swagger/index.html`
+- Dev Test: ``
