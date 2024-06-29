@@ -1,10 +1,11 @@
 using System.Collections.ObjectModel;
 
+using FinancialMarketplace.Domain.Accounts;
 using FinancialMarketplace.Domain.Common.Models;
 using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Domain.Transactions;
 
-namespace FinancialMarketplace.Domain.Users;
+namespace FinancialMarketplace.Domain.Products;
 
 public class Product : Entity
 {

@@ -1,7 +1,7 @@
 using FinancialMarketplace.Application;
 using FinancialMarketplace.Application.Contracts.Database.Repositories;
 using FinancialMarketplace.Application.Database.Repositories;
-using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Products;
 
 using Microsoft.EntityFrameworkCore;
 

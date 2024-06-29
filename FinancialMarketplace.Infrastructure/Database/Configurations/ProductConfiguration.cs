@@ -1,4 +1,4 @@
-using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Products;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

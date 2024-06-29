@@ -1,6 +1,7 @@
+using FinancialMarketplace.Domain.Accounts;
 using FinancialMarketplace.Domain.Common.Models;
 using FinancialMarketplace.Domain.Enums;
-using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Domain.Transactions;
 

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 
+using FinancialMarketplace.Domain.Accounts;
 using FinancialMarketplace.Domain.Common.Models;
 
 namespace FinancialMarketplace.Domain.Users;

@@ -13,6 +13,7 @@ using FinancialMarketplace.Domain.Users;
 using ErrorOr;
 using FinancialMarketplace.Application.Services.Auth;
 using Bogus;
+using FinancialMarketplace.Domain.Accounts;
 
 namespace FinancialMarketplace.Application.Services;
 

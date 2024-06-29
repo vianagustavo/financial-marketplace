@@ -1,9 +1,8 @@
 using FinancialMarketplace.Application.Contracts.Services;
-
 using ErrorOr;
-using FinancialMarketplace.Domain.Users;
 using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Application.Contracts.Services.Common;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Application.Services;
 

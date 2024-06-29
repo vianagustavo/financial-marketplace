@@ -1,5 +1,5 @@
 using FinancialMarketplace.Application.Contracts.Database.Repositories;
-using FinancialMarketplace.Domain.Users;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Application.Database.Repositories;
 

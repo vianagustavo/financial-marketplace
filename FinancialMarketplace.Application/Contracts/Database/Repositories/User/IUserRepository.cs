@@ -1,3 +1,4 @@
+using FinancialMarketplace.Domain.Accounts;
 using FinancialMarketplace.Domain.Users;
 
 namespace FinancialMarketplace.Application.Database.Repositories;

@@ -14,8 +14,10 @@ public class WorkersConfigurationBuilder(
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Workers is configured and is starting.");
-        _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+        _logger.LogInformation("Workers are configured and are starting.");
+
+        TimeSpan timeUntilMidnight = DateTime.Today.AddDays(1) - DateTime.Now;
+        _timer = new Timer(DoWork, null, timeUntilMidnight, TimeSpan.FromDays(1));
 
         return Task.CompletedTask;
     }

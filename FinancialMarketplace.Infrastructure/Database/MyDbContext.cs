@@ -2,6 +2,8 @@
 
 using FinancialMarketplace.Domain.Users;
 using FinancialMarketplace.Domain.Transactions;
+using FinancialMarketplace.Domain.Accounts;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Infrastructure.Database;
 

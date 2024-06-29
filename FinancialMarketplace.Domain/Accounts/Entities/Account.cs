@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 
 using FinancialMarketplace.Domain.Common.Models;
+using FinancialMarketplace.Domain.Products;
 using FinancialMarketplace.Domain.Transactions;
+using FinancialMarketplace.Domain.Users;
 
-namespace FinancialMarketplace.Domain.Users;
+namespace FinancialMarketplace.Domain.Accounts;
 
 public class Account : Entity
 {

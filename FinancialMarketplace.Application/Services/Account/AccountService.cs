@@ -6,10 +6,10 @@ using FinancialMarketplace.Application.Services.Auth;
 using FinancialMarketplace.Application.Contracts.Database;
 using FinancialMarketplace.Domain.Enums;
 using FinancialMarketplace.Application.Database.Repositories;
-using FinancialMarketplace.Domain.Users;
 using FinancialMarketplace.Domain.Transactions;
 using FinancialMarketplace.Application.Contracts.Services.Common;
 using System.Collections.ObjectModel;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Application.Services;
 

@@ -2,13 +2,13 @@ using FinancialMarketplace.Application.Contracts.Services;
 using FinancialMarketplace.Application.Database.Repositories;
 using FinancialMarketplace.Application.Errors;
 using FinancialMarketplace.Domain.Enums;
-using FinancialMarketplace.Domain.Users;
 
 using ErrorOr;
 using FinancialMarketplace.Application.Services.Auth;
 using FinancialMarketplace.Application.Contracts.Services.Common;
 using System.Collections.ObjectModel;
 using FinancialMarketplace.Application.Contracts.Database;
+using FinancialMarketplace.Domain.Products;
 
 namespace FinancialMarketplace.Application.Services;
 
