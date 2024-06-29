@@ -7,7 +7,7 @@ namespace FinancialMarketplace.Infrastructure.Tools;
 
 public class EmailTemplateBuilder(IConfiguration configuration) : IEmailTemplateBuilder
 {
-    private readonly string _url = configuration["BOM_CONSORCIO_URL"] ?? throw new ArgumentNullException("BOM_CONSORCIO_URL");
+    private readonly string _url = configuration["APPLICATION_URL"] ?? throw new ArgumentNullException("APPLICATION_URL");
     public string DefinePasswordTemplate(string token, string username)
     {
         return $@"<!DOCTYPE html>
