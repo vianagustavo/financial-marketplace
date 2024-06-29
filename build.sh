@@ -11,3 +11,4 @@ export PATH=$DOTNET_INSTALL_DIR:$PATH
 
 dotnet restore
 dotnet publish -c Release -o out
+dotnet run --project ./FinancialMarketplace.Api
