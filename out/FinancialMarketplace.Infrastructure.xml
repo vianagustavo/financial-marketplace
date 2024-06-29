@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FinancialMarketplace.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateUserTable">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateUserTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateUserTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateUserTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateRoleTable">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateRoleTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateRoleTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateRoleTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.AddBaseRoles">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddBaseRoles.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddBaseRoles.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddBaseRoles.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateAccountsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAccountsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAccountsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAccountsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateProductsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateProductsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateProductsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateProductsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateTransactionsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateTransactionsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateTransactionsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateTransactionsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.AddProductsColumns">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductsColumns.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductsColumns.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductsColumns.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.AddProductDueAt">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductDueAt.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductDueAt.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.AddProductDueAt.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:FinancialMarketplace.Infrastructure.Migrations.CreateAdminUser">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAdminUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAdminUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FinancialMarketplace.Infrastructure.Migrations.CreateAdminUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
