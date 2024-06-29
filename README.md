@@ -52,6 +52,3 @@ $ dotnet ef database update -p FinancialMarketplace.Infrastructure/ -s Financial
 Todos os endpoints desenvolvidos na API foram documentados utilizando Swagger e podem ser acessados:
 
 - Localmente: `http://localhost:5153/swagger/index.html`
-- Dev Test: ``
-
-
